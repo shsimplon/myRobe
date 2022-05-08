@@ -2,16 +2,20 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
 @Entity()
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
   @Column()
   name!: string;
-  @Column()
+  @Column({
+    nullable: true,
+  })
   address?: string;
-  @Column()
-  phone!: number;
-  @Column()
-  email: string;
+  @Column({ nullable: true })
+  phone?: string;
+  @Column({
+    unique: true,
+  })
+  email!: string;
   @Column()
   password!: string;
 }
