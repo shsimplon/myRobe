@@ -1,9 +1,12 @@
 import { ConnectionOptions, getConnectionManager } from "typeorm";
+import { Dress } from "../modules/Dress/entity";
+import { Model } from "../modules/model/entity";
+import { Reservation } from "../modules/Reservation/entity";
 import { User } from "../modules/User/entity";
 import config from "./env";
 
 console.log("database is connected");
-const entities = [User];
+const entities = [User, Dress, Model, Reservation];
 
 const options: ConnectionOptions = {
   type: "mysql",

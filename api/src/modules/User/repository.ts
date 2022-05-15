@@ -1,6 +1,6 @@
 import { EntityManager, EntityRepository } from "typeorm";
 import bcrypt from "bcrypt";
-import { CreateUser, LoginUser } from "./dto";
+import { CreateUser, DeleteUser, LoginUser, UpdateUser, UserDTO } from "./dto";
 import { User } from "./entity";
 import { user } from "../../helpers/types/user.types";
 import { IUserRepository } from "../../helpers/interfaces/user.interfaces";
@@ -26,6 +26,14 @@ class UserRepository implements IUserRepository {
   }
   compareHash = async (password: string, hash: string) =>
     await bcrypt.compareSync(password, hash);
+
+  async update(user: User) {
+    return await this.manager.update(User, user.id, { ...user });
+  }
+
+  async delete(user: User) {
+    return await this.manager.delete(User, user.id);
+  }
 }
 
 export default UserRepository;

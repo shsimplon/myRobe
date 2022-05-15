@@ -4,7 +4,7 @@ import {
   IUserService,
 } from "../../helpers/interfaces/user.interfaces";
 import { IMailerService } from "../../libs/mailer";
-import { CreateUser, LoginUser } from "./dto";
+import { CreateUser, DeleteUser, LoginUser, UpdateUser, UserDTO } from "./dto";
 import { User } from "./entity";
 import UserRepository from "./repository";
 
@@ -15,6 +15,7 @@ export default class UserService implements IUserService {
     this.UserRepository = userRepository;
     this.mailerService = mailerService;
   }
+
   async getOne(user: LoginUser): Promise<User | undefined> {
     const userData = await this.UserRepository.findOne(user);
     return userData;
@@ -52,5 +53,19 @@ export default class UserService implements IUserService {
       throw new ApiError(400, "Email or password do not match");
 
     return userLogin;
+  }
+
+  async update(user: User) {
+    const userdata = await this.getOne(user);
+    await this.UserRepository.update(user);
+    const userUpdated = await this.UserRepository.findOne(user);
+    console.log(userUpdated);
+    return userUpdated;
+  }
+
+  async delete(user: User) {
+    const userData = await this.getOne(user);
+    await this.UserRepository.delete(user);
+    return `User n°${user.id} supprimée.`;
   }
 }

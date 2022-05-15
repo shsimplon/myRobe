@@ -8,6 +8,7 @@ export interface UserInterface {
   phone: string;
   email: string;
   password: string;
+  role: string;
 }
 const schema = {
   type: "object",
@@ -19,6 +20,7 @@ const schema = {
     phone: { type: "string", nullable: true },
     email: { type: "string" },
     password: { type: "string" },
+    role: { type: "string", nullable: true },
   },
   required: ["email", "password"],
   additionalProperties: false,
@@ -47,6 +49,8 @@ export class UserDTO {
   public phone?: string;
   public email: string;
   public password: string;
+  public role?: string;
+
   public access_token?: string;
   constructor({
     id,
@@ -55,6 +59,7 @@ export class UserDTO {
     phone,
     email,
     password,
+    role,
     access_token,
   }: {
     id: string;
@@ -63,6 +68,7 @@ export class UserDTO {
     phone?: string;
     access_token?: string;
     name: string;
+    role?: string;
     password: string;
   }) {
     this.id = id;
@@ -71,6 +77,8 @@ export class UserDTO {
     this.access_token = access_token;
     this.address = address;
     this.phone = phone;
+    this.role = role;
+
     this.password = password;
   }
 }

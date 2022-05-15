@@ -1,4 +1,11 @@
-import { Controller, Get, Middleware, Post } from "@overnightjs/core";
+import {
+  Controller,
+  Delete,
+  Get,
+  Middleware,
+  Post,
+  Put,
+} from "@overnightjs/core";
 import { validateFunctionCode } from "ajv/dist/compile/validate";
 import validation from "ajv/dist/vocabularies/validation";
 import { Request, Response, NextFunction } from "express";
@@ -73,7 +80,7 @@ class UserController {
     }
   };
 
-  @Get()
+  @Get(":id")
   @Middleware(auth.isAuth)
   getOne = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -89,6 +96,26 @@ class UserController {
   logout = async (req: Request, res: Response, next: NextFunction) => {
     res.clearCookie("refresh_token");
     res.status(200).end();
+  };
+  @Put()
+  update = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = await this.userService.update({ ...req.body });
+
+      res.status(201).json(user);
+    } catch (err) {
+      next(err);
+    }
+  };
+  @Delete(":id")
+  delete = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = await this.userService.delete({ ...req.body });
+
+      res.status(201).json(user);
+    } catch (err) {
+      next(err);
+    }
   };
 }
 export default UserController;

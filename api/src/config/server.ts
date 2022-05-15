@@ -1,9 +1,10 @@
 import express, { Response } from "express";
 import { Request } from "express";
+
 import { Server } from "@overnightjs/core";
 import { handleError } from "../helpers/ApiError";
 import swaggerUi from "swagger-ui-express";
-import swaggerDocument from "../swagger.json";
+import swaggerOptions from "../swagger.json";
 class App extends Server {
   constructor(routes: Array<Object>, middlewares: Object) {
     super();
@@ -31,8 +32,9 @@ class App extends Server {
   initializeErrorHandler() {
     this.app.use(handleError);
   }
+
   initializeSwagger() {
-    this.app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerOptions));
   }
 
   listen(port: any) {

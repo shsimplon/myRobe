@@ -1,19 +1,74 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.3",
   "info": {
-    "version": "1.0.0",
-    "title": "My Api ",
-    "description": "My api myrobe "
+    "title": " API",
+    "description": "Backend API boiler plate with express + jest + supertest documented with Swagger",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "houacine.samira@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0"
   },
-  "host": "localhost:8000",
-  "basePath": "/",
-  "tags": [
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
     {
-      "name": "Users",
-      "description": "API for users in the system"
+      "url": "http://localhost:8080/"
     }
   ],
-  "schemes": ["http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"]
+  "paths": {
+    "/user": {
+      "get": {
+        "description": "Returns a list of user",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["message"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
 }

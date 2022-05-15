@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BaseEntity,
+  OneToMany,
+} from "typeorm";
+import { Dress } from "../Dress/entity";
+import { Reservation } from "../Reservation/entity";
 
 @Entity()
 export class User extends BaseEntity {
@@ -18,4 +26,10 @@ export class User extends BaseEntity {
   email!: string;
   @Column()
   password!: string;
+  @Column()
+  role?: string;
+
+  //relation
+  @OneToMany(() => Reservation, (reservation) => reservation.user)
+  reservations: Reservation[];
 }
