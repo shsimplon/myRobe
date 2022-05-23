@@ -1,0 +1,21 @@
+button {
+    height: 5vh;
+        border-radius: 7px;
+        font-size: clamp(0.1rem, 10vw, 0.5rem); 
+
+    resize: none;
+    width: 20%;
+align-items: center;
+
+ 
+ background:#BB8A5E;
+    ; 
+    color:black;
+    &:hover {
+
+        background: #BB8A5E ;
+opacity:30%    
+    }
+
+}
+
