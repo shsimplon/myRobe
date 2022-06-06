@@ -14,10 +14,5 @@ const Label = (props: Props) => {
     </label>
   );
 };
-Label.defaultProps = {
-  htmlFort: '',
-  className: '',
-  children: '',
-};
 
 export default Label;

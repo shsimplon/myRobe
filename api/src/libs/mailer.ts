@@ -1,6 +1,4 @@
-import { User } from "../modules/User/entity";
 import { CreateUser } from "../modules/User/dto";
-
 export interface IMailerService {
   sendMail(user: CreateUser): Promise<void>;
 }
@@ -28,7 +26,7 @@ class MailerService implements IMailerService {
       // send mail with defined transport object
       let info = await transporter.sendMail({
         // send mail with defined transport object
-        from: '"samira Name 👻" <from@example.com>', // sender address
+        from: '"samira Name 👻" <mily0742009@outlouk.fr>', // sender address
         to: user.email, // list of receivers
         subject: "Hello ✔", // Subject line
         text: "Hello world?", // plain text body
@@ -41,7 +39,6 @@ class MailerService implements IMailerService {
     } catch (err) {
       throw new Error("Unable to send the email verification");
     }
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   }
 }
 

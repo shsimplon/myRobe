@@ -12,7 +12,9 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { HomePage } from './pages/HomePage/Loadable';
 import { useTranslation } from 'react-i18next';
 import '../styles/index.scss';
-import Form from './components/organisms/form/Form';
+import FormRegister from './pages/pageAuthentification/form/FormRegister';
+import FormLogin from './pages/pageAuthentification/form/FormLogin';
+import modaleAuthentification from './pages/pageAuthentification/form/modaleAuthentification';
 export function App() {
   const { i18n } = useTranslation();
   return (
@@ -27,7 +29,18 @@ export function App() {
 
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/form" component={Form} />
+        <Route
+          exact
+          path="/authentification/"
+          component={modaleAuthentification}
+        />
+        <Route
+          exact
+          path="/authentification/register"
+          component={FormRegister}
+        />
+        <Route exact path="/authentification/login" component={FormLogin} />
+
         <Route exact path="/" component={HomePage} />
         <Route exact path="/" component={HomePage} />
       </Switch>

@@ -33,6 +33,8 @@ export default class UserService implements IUserService {
     if (!user.email || !user.password)
       throw new ApiError(400, "Missing required email and password fields");
     const users = await this.UserRepository.addNew(user);
+    console.log("user", user);
+
     await this.mailerService.sendMail(user);
     return users;
   }

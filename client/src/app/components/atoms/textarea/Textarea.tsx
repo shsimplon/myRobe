@@ -22,12 +22,5 @@ const Textarea = (props: Props) => {
     />
   );
 };
-Textarea.defaultProps = {
-  type: '',
-  name: '',
-  id: '',
-  value: '',
-  onChange: '',
-  className: '',
-};
+
 export default Textarea;

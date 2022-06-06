@@ -7,25 +7,24 @@ type Props = {
   onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   className: string;
 };
-const Input = (props: Props) => {
-  const { name, id, value, type, onChange, className } = props;
+const Input: React.FC<Props> = ({
+  name,
+  id,
+  value,
+  type,
+  onChange,
+  className,
+}) => {
   return (
     <input
       id={id}
       type={type}
-      className={className}
+      className="input"
       name={name}
       value={value}
       onChange={onChange}
     />
   );
 };
-Input.defaultProps = {
-  type: '',
-  name: '',
-  id: '',
-  value: '',
-  onChange: '',
-  className: '',
-};
+
 export default Input;

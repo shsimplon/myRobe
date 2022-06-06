@@ -11,19 +11,12 @@ export default class DressService implements IDressService {
     this.dressRepository = dressRepository;
   }
 
-  async getOne(dressId: Dress) {
-    const dress = await this.dressRepository.getOne(dressId);
-    if (!dress) {
-      throw new Error("dress introvable");
-    }
-    return dress;
-  }
   async delete(dressId: Dress) {
     const dressDeleted = await this.getOne(dressId);
 
     await this.dressRepository.delete(dressId);
 
-    return `Dress n°${dressId.id} supprimée.`;
+    return `Robe n°${dressId.id} supprimée.`;
   }
   async getAll() {
     const dresses = await this.dressRepository.getAll();
@@ -35,13 +28,11 @@ export default class DressService implements IDressService {
 
   async update(dress: Dress) {
     const dressData = await this.getOne(dress);
-    console.log("dressData", dressData);
-
     if (!dressData) {
-      throw new Error("dress introuvable.");
+      throw new Error("robe introuvable.");
     }
     if (dress === dressData) {
-      throw new Error("dress identique ou déjà modifiée.");
+      throw new Error("robe identique ou déjà modifiée.");
     }
     await this.dressRepository.update(dress);
     const dressUpdated = await this.getOne(dress);
@@ -52,5 +43,12 @@ export default class DressService implements IDressService {
     const dressSaved = await this.dressRepository.register(dress);
 
     return dressSaved;
+  }
+  async getOne(dressId: Dress) {
+    const dressData = await this.dressRepository.getOne(dressId);
+    if (!dressData) {
+      throw new Error("Robe introvable");
+    }
+    return dressData;
   }
 }

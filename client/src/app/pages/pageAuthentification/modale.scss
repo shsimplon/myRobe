@@ -1,0 +1,25 @@
+
+
+.authentification{
+   
+    text-align: center;
+  
+.connect-modal {
+    
+    .header-btn {
+        padding: 4px 14px;
+        border-radius: 10px 10px 0 0; 
+
+    transition: 0.2s;
+      button {
+       width: 10%;
+        &:hover {
+            filter: brightness(80%);
+            transform: translateX(2px);
+          }
+      }
+      
+    }
+   
+}
+}

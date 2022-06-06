@@ -26,7 +26,7 @@ export class User extends BaseEntity {
   email!: string;
   @Column()
   password!: string;
-  @Column()
+  @Column({ nullable: true })
   role?: string;
 
   //relation

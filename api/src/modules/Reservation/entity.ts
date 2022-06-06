@@ -12,8 +12,8 @@ import { User } from "../User/entity";
 
 @Entity()
 export class Reservation extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
   @Column()
   name!: string;
   @Column()

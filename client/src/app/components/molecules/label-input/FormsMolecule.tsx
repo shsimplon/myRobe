@@ -4,23 +4,22 @@ import Input from 'app/components/atoms/input/Input';
 import Label from 'app/components/atoms/label/Label';
 import React from 'react';
 import { useState } from 'react';
-type Props = {
+type formMolecule = {
   type: string;
   name: string;
   id: string;
   value: string;
   onChange: Function;
-  //   className: string;
-  //   children: React.ReactNode;
+  className?: string;
+  children?: React.ReactNode;
 };
-const FormMolecule = (props: Props) => {
-  const { name, id, type, value } = props;
+const FormMolecule = (props: formMolecule) => {
+  const { name, id, type, value, className } = props;
 
   const [query, setQuery] = useState('');
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const enteredName = event.target.value;
-    setQuery(enteredName);
+    setQuery(event.target.value);
   };
 
   return (
@@ -35,7 +34,7 @@ const FormMolecule = (props: Props) => {
         type={type}
         name={name}
         onChange={inputHandler}
-        className="input"
+        className={''}
       />
     </div>
   );

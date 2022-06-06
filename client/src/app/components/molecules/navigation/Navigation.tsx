@@ -25,7 +25,7 @@ const NavigationComponent = () => {
             src="https://static.overlay-tech.com/assets/cdb01ef3-6f67-477a-a321-2f3877f665fc.svg"
           />
         </Link>
-        <Link to="/form">
+        <Link to="/authentification">
           <img
             alt=""
             src="https://static.overlay-tech.com/assets/42a6309f-f647-42fb-b109-44552601b9de.svg"

@@ -1,7 +1,8 @@
-@import './settings';
+@import './settings.scss';
 @import '../app/components/atoms/button/button.scss';
 @import '../app/components/atoms/input/input.scss';
 @import '../app/components/atoms/label/label.scss';
 @import '../app/components/atoms/textarea/textarea.scss';
 @import '../app/components/molecules/label-input/formMolecule.scss';
-@import '../app/components/organisms/form/form.scss';
+@import '../app/pages/pageAuthentification/form/form.scss';
+@import '../app/pages/pageAuthentification/modale';
