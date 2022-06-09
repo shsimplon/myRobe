@@ -42,7 +42,6 @@ export function App() {
         <Route exact path="/authentification/login" component={FormLogin} />
 
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
   );
