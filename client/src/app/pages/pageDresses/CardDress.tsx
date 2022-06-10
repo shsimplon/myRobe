@@ -32,10 +32,9 @@ const CardDress = ({ dress }) => {
 
       price: inputPrice.current && inputPrice.current.value,
     };
-    dressService.updateDress(data);
-    // .then(() => {
-    //   dispatch(editDress([data.name, data.price, data.size, dress.id]));
-    // });
+    dressService.updateDress(data).then(() => {
+      dispatch(editDress([data.name, data.price, data.size, dress.id]));
+    });
   };
   //   useEffect(() => {
   //     dispatch(getDresses);

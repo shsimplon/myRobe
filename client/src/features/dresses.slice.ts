@@ -16,15 +16,18 @@ export const dressesSlice = createSlice({
       state.dress.push(payload);
     },
     editDress: (state, { payload }) => {
-      state.dress = state.dress.map(dress => {
-        if (dress.id === payload[1]) {
-          return {
-            ...dress,
-            dress: payload[0],
-          };
-        } else {
-          return dress;
+      state.dress.map(dress => {
+        if (dress.id === payload.id) {
+          //   return {
+          //     ...dress,
+          dress.name = payload.name;
+          dress.price = payload.price;
+
+          dress.size = payload.size;
         }
+        // } else {
+        //   return dress;
+        // }
       });
     },
 
