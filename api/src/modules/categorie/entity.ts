@@ -9,15 +9,15 @@ import {
 import { Dress } from "../Dress/entity";
 
 @Entity()
-export class Model extends BaseEntity {
+export class Categorie extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({
     unique: true,
   })
-  name_model!: string;
+  name_categorie!: string;
 
-  @OneToMany(() => Dress, (dress) => dress.model)
+  @OneToMany(() => Dress, (dress) => dress.categorie)
   dresses: Dress[];
 }

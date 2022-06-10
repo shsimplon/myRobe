@@ -1,3 +1,3 @@
-import { getAll, postDress } from './dressService';
+import { deleteDress, getAll, postDress, updateDress } from './dressService';
 
-export const dressService = { getAll, postDress };
+export const dressService = { getAll, postDress, updateDress, deleteDress };

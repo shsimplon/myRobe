@@ -1,59 +1,4 @@
-.form-container {
-    margin-top: 3rem;
 
-  background: url('https://dresssum.photos/800/300') center/cover;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-
-  .form {
-      margin-top: 2rem;
-    backdrop-filter: blur(5px);
-    background: rgba(255, 255, 255, 0.85);
-    height: inherit;
-    width: inherit;
-    transform: translateY(-19px);
-    padding: 14px;
-  }
-  form {
-    display: grid;
-    grid-template-columns: 47% 20% 1fr;
-    padding-right: 30px;
-    gap: 10px;
-    @media screen and (max-width: 600px) {
-  
-        grid-template-columns:auto   
-  }
-  }
-  input {
-    height: 30px;
-    padding: 6px;
-    border: 1px solid rgb(205, 205, 205);
-    border-radius: 10px;
-  }
-  input[type='submit'] {
-    height: 40%;
-    font-weight: 600;
-    background: rgb(199, 184, 168);
-    color: #fefffe;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: 0.3s;
-    @media screen and (max-width: 600px) {
-  
-        height: auto;
-        width: 50% }
-  }
-  input[type='submit']:hover {
-    background: rgb(187, 138, 93, 0.2);
-    color: rgb(220, 201, 206);
-    border: 1px solid rgb(187, 138, 93);
-    box-shadow: 0 0px 10px rgb(187, 138, 93, 0.7);
-  }
-  
- 
- 
-}
 
 .cards-container {
   display: grid;
@@ -65,8 +10,9 @@
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   margin: 14px 14px 0 0;
-  height: 300px;
+//   height: 300px;
   transition: 0.2s;
+  padding-bottom: 1rem;
 }
 .dress-card:hover {
   transform: scale(1.02);
@@ -88,7 +34,7 @@
   }
 }
 img {
-  height: 80%;
+  height: 70%;
   width: 100%;
   object-fit: cover;
 }
@@ -110,29 +56,30 @@ h4 {
   font-weight: 600;
 }
 .title p {
-  color: rgb(32, 128, 227);
+  color: #F1BD8B ;
+  font-weight: 700;
   margin: 0;
 }
 .title input {
   height: 10px;
-  width: 60%;
+//   width: 60%;
 }
 .title button {
   font-weight: 600;
-  background: rgb(32, 128, 227);
+  background: rgb(199, 184, 168);
   color: #fefffe;
   letter-spacing: 1px;
   cursor: pointer;
   transition: 0.15s;
   border-radius: 10px;
   border: none;
-  height: 100%;
-  margin-left: 4px;
+    //  height: 40%;
+       margin-left: 4px;
 }
 .title button:hover {
-  background: white;
-  border: 1px solid rgb(32, 128, 227);
-  color: rgb(32, 128, 227);
+  background: #F1BD8B;
+  border: 1px solid #F1BD8B;
+  color:  black;;
 }
 .btn-container {
   cursor: pointer;

@@ -51,7 +51,7 @@ export class UserDTO {
   public password: string;
   public role?: string;
 
-  public access_token: string;
+  public access_token?: string;
   constructor({
     id,
     name,
@@ -66,7 +66,7 @@ export class UserDTO {
     email: string;
     address?: string;
     phone?: string;
-    access_token: string;
+    access_token?: string;
     name: string;
     role?: string;
     password: string;

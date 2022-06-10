@@ -7,8 +7,8 @@ import {
   ManyToMany,
   JoinTable,
 } from "typeorm";
-import { Model } from "../model/entity";
 import { Reservation } from "../Reservation/entity";
+import { Categorie } from "../categorie/entity";
 
 @Entity()
 export class Dress extends BaseEntity {
@@ -23,11 +23,11 @@ export class Dress extends BaseEntity {
   size!: string;
   @Column()
   price!: string;
-  @Column("longtext")
+  @Column("longtext", { nullable: true })
   image?: string;
 
-  @ManyToOne(() => Model, (model) => model.dresses)
-  model: Model;
+  @ManyToOne(() => Categorie, (categorie) => categorie.dresses)
+  categorie: Categorie;
   @ManyToMany(() => Reservation, (reservation) => reservation.dress)
   @JoinTable({ name: "dress_reservation" })
   reservation: Reservation[];

@@ -12,7 +12,6 @@ const DressesList = () => {
   const dressState = useSelector(
     (state: { dress: dressesStore }) => state.dress.dress,
   );
-  console.log('dressState', dressState);
 
   useEffect(() => {
     dressService.getAll().then(res => dispatch(getDresses(res.data)));

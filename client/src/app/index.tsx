@@ -15,6 +15,7 @@ import '../styles/index.scss';
 import FormRegister from './pages/pageAuthentification/form/FormRegister';
 import FormLogin from './pages/pageAuthentification/form/FormLogin';
 import modaleAuthentification from './pages/pageAuthentification/form/modaleAuthentification';
+import CardDressDetails from './pages/pageDresses/CardDressDetails';
 export function App() {
   const { i18n } = useTranslation();
   return (
@@ -40,6 +41,7 @@ export function App() {
           component={FormRegister}
         />
         <Route exact path="/authentification/login" component={FormLogin} />
+        <Route exact path="/dress/editDress" component={CardDressDetails} />
 
         <Route exact path="/" component={HomePage} />
       </Switch>

@@ -1,0 +1,57 @@
+.form-container {
+    margin-top: 3rem;
+
+  background: url('https://dresssum.photos/800/300') center/cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+
+  .form {
+      margin-top: 2rem;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.85);
+    height: inherit;
+    width: inherit;
+    transform: translateY(-19px);
+    padding: 14px;
+  }
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-right: 30px;
+    gap: 10px;
+    @media screen and (max-width: 600px) {
+  
+        grid-template-columns:auto   
+  }
+  }
+  input {
+    height: 30px;
+    padding: 6px;
+    border: 1px solid rgb(205, 205, 205);
+    border-radius: 10px;
+  }
+  input[type='submit'] {
+    height: 60%;
+    font-weight: 600;
+    background: rgb(199, 184, 168);
+    color: #fefffe;
+    letter-spacing: 1px;
+    margin: auto;
+    cursor: pointer;
+    transition: 0.3s;
+    @media screen and (max-width: 600px) {
+  
+        height: auto;
+        width: 50% }
+  }
+  input[type='submit']:hover {
+    background: rgb(187, 138, 93, 0.2);
+    color: rgb(220, 201, 206);
+    border: 1px solid rgb(187, 138, 93);
+    box-shadow: 0 0px 10px rgb(187, 138, 93, 0.7);
+  }
+  
+ 
+ 
+}

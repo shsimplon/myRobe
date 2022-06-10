@@ -15,8 +15,25 @@ export const dressesSlice = createSlice({
     addDress: (state, { payload }) => {
       state.dress.push(payload);
     },
+    editDress: (state, { payload }) => {
+      state.dress = state.dress.map(dress => {
+        if (dress.id === payload[1]) {
+          return {
+            ...dress,
+            dress: payload[0],
+          };
+        } else {
+          return dress;
+        }
+      });
+    },
+
+    deleteDress: (state, { payload }) => {
+      state.dress = state.dress.filter(dress => dress.id !== payload.id);
+    },
   },
 });
 
-export const { getDresses, addDress } = dressesSlice.actions;
+export const { getDresses, addDress, editDress, deleteDress } =
+  dressesSlice.actions;
 export default dressesSlice.reducer;
