@@ -1,8 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Navigation, MenuBurger, img } from './navigation.style';
+import { logout } from 'features/user.slice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { userServices } from 'services';
+import { userStore } from 'types/user';
+import { HiOutlineLogout } from 'react-icons/hi';
 
+import { Navigation, MenuBurger, img } from './navigation.style';
 const NavigationComponent = () => {
+  let history = useHistory();
+
+  const [users, setUsers] = useState([]);
+
+  const userState = useSelector((state: { user: userStore }) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getUsers();
+  }, []);
+  const logoutUser = async () => {
+    await dispatch(logout());
+    history.push('/authentification');
+  };
+  const getUsers = async () => {
+    try {
+      const response = await userServices.getAllUsers();
+      setUsers(response.data);
+    } catch (error: any) {
+      if (error.hasRefreshedToken) getUsers();
+      else {
+        dispatch(logout());
+        history.push('/authentification');
+      }
+    }
+  };
   return (
     <Navigation>
       <div style={{ display: 'flex', gap: '50px' }}>
@@ -13,24 +43,30 @@ const NavigationComponent = () => {
         <img src="../logo.png" alt="" />
       </div>
       <div style={{ display: 'flex', gap: '50px' }}>
-        <Link to={undefined}>
+        <Link to="/dress/favoris">
           <img
             alt=""
             src="https://static.overlay-tech.com/assets/dd011da0-9f6a-4023-9d03-f71c4f8b1f9f.svg"
           />
         </Link>
-        <Link to={undefined}>
+        <Link to="dress/panier">
           <img
             alt=""
             src="https://static.overlay-tech.com/assets/cdb01ef3-6f67-477a-a321-2f3877f665fc.svg"
           />
         </Link>
+        {userState.user?.email}
+
         <Link to="/authentification">
           <img
             alt=""
             src="https://static.overlay-tech.com/assets/42a6309f-f647-42fb-b109-44552601b9de.svg"
           />
         </Link>
+        <HiOutlineLogout
+          style={{ color: '#BB8A5D', fontSize: '1.7rem', cursor: 'pointer' }}
+          onClick={logoutUser}
+        />
       </div>
     </Navigation>
   );

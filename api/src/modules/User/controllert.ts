@@ -27,6 +27,7 @@ class UserController {
   register = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = await this.userService.register({ ...req.body });
+      console.log("user,", user);
       res.status(201).json(user);
     } catch (error) {
       next(error);
@@ -43,7 +44,7 @@ class UserController {
       next(err);
     }
   };
-  @Post("auth")
+  @Post("login")
   login = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = await this.userService.login({ ...req.body });
@@ -55,7 +56,7 @@ class UserController {
         expires: nextMonhteDate,
         httpOnly: true,
       });
-      res.status(200).json(new UserDTO({ ...user, access_token }));
+      res.status(200).json({ ...user, access_token });
     } catch (err) {
       next(err);
     }

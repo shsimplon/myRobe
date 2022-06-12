@@ -10,10 +10,8 @@ import UserRepository from "./repository";
 
 export default class UserService implements IUserService {
   private UserRepository;
-  private mailerService;
   constructor(userRepository: IUserRepository, mailerService: IMailerService) {
     this.UserRepository = userRepository;
-    this.mailerService = mailerService;
   }
 
   async getOne(user: LoginUser): Promise<User | undefined> {
@@ -35,7 +33,7 @@ export default class UserService implements IUserService {
     const users = await this.UserRepository.addNew(user);
     console.log("user", user);
 
-    await this.mailerService.sendMail(user);
+    // await this.mailerService.sendMail(user);
     return users;
   }
   async login(user: LoginUser) {

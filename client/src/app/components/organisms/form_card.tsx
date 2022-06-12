@@ -15,7 +15,7 @@ const Form = ({ getDresses }) => {
   const formRef = React.useRef<HTMLFormElement | null>(null);
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const data = {
@@ -28,7 +28,7 @@ const Form = ({ getDresses }) => {
     };
     console.log('data POSTED', data);
 
-    dressService.postDress(data).then(() => {
+    await dressService.postDress(data).then(() => {
       dispatch(addDress(data));
       formRef.current && formRef.current.reset();
     });
@@ -42,7 +42,8 @@ const Form = ({ getDresses }) => {
   return (
     <div className="form-container">
       <div className="form">
-        <h3>Enregistrer une nouvelle photo</h3>
+        <h3>Enregistrer une nouvelle robe</h3>
+        <br />
         <form onSubmit={e => handleSubmit(e)} ref={formRef}>
           <input
             type="text"

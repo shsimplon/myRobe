@@ -16,8 +16,12 @@ import FormRegister from './pages/pageAuthentification/form/FormRegister';
 import FormLogin from './pages/pageAuthentification/form/FormLogin';
 import modaleAuthentification from './pages/pageAuthentification/form/modaleAuthentification';
 import CardDressDetails from './pages/pageDresses/CardDressDetails';
+import { useSelector } from 'react-redux';
+import { userStore } from 'types/user';
+import Home from './components/templates/Home';
 export function App() {
   const { i18n } = useTranslation();
+
   return (
     <BrowserRouter>
       <Helmet
@@ -35,12 +39,8 @@ export function App() {
           path="/authentification/"
           component={modaleAuthentification}
         />
-        <Route
-          exact
-          path="/authentification/register"
-          component={FormRegister}
-        />
-        <Route exact path="/authentification/login" component={FormLogin} />
+        {/* <Route exact path="/authentification" component={FormRegister} />
+        <Route exact path="/authentification" component={FormLogin} /> */}
         <Route exact path="/dress/editDress" component={CardDressDetails} />
 
         <Route exact path="/" component={HomePage} />
@@ -48,3 +48,7 @@ export function App() {
     </BrowserRouter>
   );
 }
+const PrivateRoute = ({ component: Component }: { component: JSX.Element }) => {
+  const userState = useSelector((state: { user: userStore }) => state.user);
+  return !userState.isLogged ? <Home /> : Component;
+};
