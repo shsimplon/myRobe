@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react/jsx-no-undef */
 import { editDress, getDresses } from 'features/dresses.slice';
 import React, { useCallback } from 'react';
 import { useRef, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dressService } from 'services';
 import { FaRegEdit } from 'react-icons/fa';
 import Delete from './Delete';
+import { Image } from 'cloudinary-react';
+
 const CardDress = ({ dress }) => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<any>();
+
   const [edit, setEdit] = useState(false);
   const inputName = React.useRef<HTMLInputElement | null>(null);
   const inputDescription = React.useRef<HTMLInputElement | null>(null);
@@ -36,12 +42,38 @@ const CardDress = ({ dress }) => {
       dispatch(editDress([data.name, data.price, data.size, dress.id]));
     });
   };
-  //   useEffect(() => {
-  //     dispatch(getDresses);
-  //   }, []);
+  //@ts-ignore
+  //   setImage(JSON.parse(localStorage.getItem('image')));
+
+  //   console.log('image', image);
+
+  // useEffect(() => {
+  //   const displayImage = () => {
+  //     let binary = new Uint8Array(dress.image);
+  //     console.log('binary', binary);
+
+  //     let blob = new Blob([binary]);
+  //     URL.createObjectURL(dress.image);
+  //     setImage(URL.createObjectURL(blob));
+  //     console.log('image', image);
+  //   };
+  //   displayImage();
+  // }, []);
+
+  // dispatch(getDresses);
+
   return (
     <div className="dress-card">
       <img src={dress.image} alt={'photo de ' + dress.name} />
+      {/* <div>
+        {image && (
+          <Image
+            cloudName="djmh8vlgx"
+            publicId={`https://res.cloudinary.com/djmh8vlgx/image/upload/v1655545261/${image.public_id}`}
+          />
+        )}
+      </div> */}
+
       <div className="infos">
         <div className="title">
           {edit ? (

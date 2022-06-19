@@ -10,6 +10,7 @@ export const dressesSlice = createSlice({
   reducers: {
     getDresses: (state: dressesStore, action: PayloadAction<dress[]>) => {
       const dress = action.payload;
+
       state.dress = dress;
     },
     addDress: (state, { payload }) => {
