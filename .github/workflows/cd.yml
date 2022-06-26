@@ -30,4 +30,4 @@ jobs:
             git status
             cd api
             npm install 
-            pm2 restart myRobeAPI
+            pm2 restart myRobAPI
