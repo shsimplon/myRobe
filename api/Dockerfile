@@ -1,13 +1,7 @@
 FROM node:16
-
 WORKDIR /app
-
 COPY . .
-
-RUN npm install
-
+RUN npm
 COPY /src .
-
 EXPOSE 8080
-
-CMD ["npm", "start"]
+CMD ["npm","start"]

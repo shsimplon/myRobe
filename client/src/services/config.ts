@@ -4,6 +4,7 @@ import { login } from 'features/user.slice';
 
 const http = axios.create({
   baseURL: `http://localhost:8080`,
+
   withCredentials: true,
 });
 //intercepte toutes les requettes axios

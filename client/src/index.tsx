@@ -18,14 +18,30 @@ import './locales/i18n';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/stylesheets';
 import store from 'app/store/store';
+import { userServices } from 'services';
+import { login, logout } from 'features/user.slice';
+import { userStore } from './types/user';
+import { BrowserRouter } from 'react-router-dom';
+
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
+
+const isAuth = async () => {
+  try {
+    const response = await userServices.isAuth();
+    store.dispatch(login(response.data));
+  } catch (error: any) {
+    // store.dispatch(logout());
+  }
+};
 
 ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
         <ThemeProvider theme={theme}>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </ThemeProvider>
       </React.StrictMode>
     </HelmetProvider>

@@ -1,14 +1,14 @@
 import { logout } from 'features/user.slice';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userServices } from 'services';
 import { userStore } from 'types/user';
 import { HiOutlineLogout } from 'react-icons/hi';
 
 import { Navigation, MenuBurger, img } from './navigation.style';
 const NavigationComponent = () => {
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const [users, setUsers] = useState([]);
 
@@ -19,7 +19,7 @@ const NavigationComponent = () => {
   }, []);
   const logoutUser = async () => {
     await dispatch(logout());
-    history.push('/authentification');
+    navigate('/authentification');
   };
   const getUsers = async () => {
     try {
@@ -29,10 +29,11 @@ const NavigationComponent = () => {
       if (error.hasRefreshedToken) getUsers();
       else {
         dispatch(logout());
-        history.push('/authentification');
+        navigate('/authentification');
       }
     }
   };
+
   return (
     <Navigation>
       <div style={{ display: 'flex', gap: '50px' }}>
@@ -55,7 +56,6 @@ const NavigationComponent = () => {
             src="https://static.overlay-tech.com/assets/cdb01ef3-6f67-477a-a321-2f3877f665fc.svg"
           />
         </Link>
-        {userState.user?.email}
 
         <Link to="/authentification">
           <img
@@ -63,10 +63,12 @@ const NavigationComponent = () => {
             src="https://static.overlay-tech.com/assets/42a6309f-f647-42fb-b109-44552601b9de.svg"
           />
         </Link>
-        <HiOutlineLogout
-          style={{ color: '#BB8A5D', fontSize: '1.7rem', cursor: 'pointer' }}
-          onClick={logoutUser}
-        />
+        {userState.user && (
+          <HiOutlineLogout
+            style={{ color: '#BB8A5D', fontSize: '1.7rem', cursor: 'pointer' }}
+            onClick={logoutUser}
+          />
+        )}
       </div>
     </Navigation>
   );

@@ -2,13 +2,13 @@ import Button from 'app/components/atoms/button/Button';
 import FormMolecule from 'app/components/molecules/label-input/FormsMolecule';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { userServices } from 'services';
 import { notifySuccess } from 'utils/toastify';
 import { userComplete } from '../../../../types/user';
 
 const Form = signup => {
-  let history = useHistory();
+  let navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -47,11 +47,10 @@ const Form = signup => {
         password,
         role,
       });
-      console.log('datattttt', response.data);
       const user = response.data;
       notifySuccess('Votre compte est enregistré, veuillez vous connectez!');
 
-      history.push('/authentification');
+      navigate('/authentification');
     } catch (error: any) {
       setError(true);
     }

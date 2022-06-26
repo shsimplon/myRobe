@@ -7,13 +7,11 @@ import axios from 'axios';
 import UploadImage from 'app/pages/pageDresses/UploadImage';
 
 const Form = ({ getDresses }) => {
-  //   const [imageData, setImageData] = useState(null);
   const [image, setImage] = useState('');
   const inputName = React.useRef<HTMLInputElement | null>(null);
   const inputDescription = React.useRef<HTMLInputElement | null>(null);
   const inputSize = React.useRef<HTMLInputElement | null>(null);
   const inputPrice = React.useRef<HTMLInputElement | null>(null);
-  //   const fileInput = React.useRef<HTMLInputElement | null>(null);
 
   const formRef = React.useRef<HTMLFormElement | null>(null);
   const dispatch = useDispatch();
@@ -36,11 +34,6 @@ const Form = ({ getDresses }) => {
     formRef.current && formRef.current.reset();
   };
 
-  //   const handleUpload = event => {
-  //     if (event.target.files && event.target.files[0]) {
-  //       setImage(URL.createObjectURL(event.target.files[0]));
-  //     }
-  //   };
   const handleUpload = async e => {
     const files = e.target.files;
     const data = new FormData();
@@ -95,8 +88,6 @@ const Form = ({ getDresses }) => {
             <input
               type="file"
               className="input-file"
-              // ref={fileInput}
-              //required={true}
               onChange={e => handleUpload(e)}
             />
             <br />
