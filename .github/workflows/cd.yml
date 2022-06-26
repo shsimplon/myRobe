@@ -26,7 +26,8 @@ jobs:
           port: 22
           script: |
             cd ~/myRobe
-            git pull origin update
+            git pull origin main
             git status
+            cd api
             npm install 
-            pm2 restart myRobe
+            pm2 restart myRobAPI
