@@ -1,5 +1,8 @@
 {
+   
     "compilerOptions": {
+        "esModuleInterop": true,
+
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "strictPropertyInitialization": false,
@@ -15,7 +18,6 @@
         "rootDir": "src",
         "strict": true,
         "noImplicitAny": true,
-        "esModuleInterop": true,
         "resolveJsonModule": true
     }
 }
