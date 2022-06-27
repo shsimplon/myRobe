@@ -1,10 +1,6 @@
 {
-   
     "compilerOptions": {
-        
         "experimentalDecorators": true,
-     
-
         "emitDecoratorMetadata": true,
         "strictPropertyInitialization": false,
         "target": "es6",
@@ -21,8 +17,5 @@
         "noImplicitAny": true,
         "esModuleInterop": true,
         "resolveJsonModule": true
-    },
-    "ts-node": {
-        "esm": true
-    },
+    }
 }
