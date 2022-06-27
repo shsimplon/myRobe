@@ -6,7 +6,6 @@ import Logger from "../helpers/logger";
 import morgan from "morgan";
 import csurf from "csurf";
 
-// middlewares
 import AuthMiddleware from "./auth";
 import cors from "cors";
 import { jwtService } from "../libs";
