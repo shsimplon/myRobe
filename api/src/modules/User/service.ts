@@ -10,7 +10,7 @@ import UserRepository from "./repository";
 
 export default class UserService implements IUserService {
   private UserRepository;
-  constructor(userRepository: IUserRepository, mailerService: IMailerService) {
+  constructor(userRepository: IUserRepository) {
     this.UserRepository = userRepository;
   }
 

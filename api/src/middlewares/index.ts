@@ -8,8 +8,9 @@ import csurf from "csurf";
 
 // middlewares
 import AuthMiddleware from "./auth";
-import { jwtService } from "../libs";
+// import { jwtService } from "../libs";
 import cors from "cors";
+import { jwtService } from "../libs";
 
 // initialize middlewares with dependencies injection
 const auth = new AuthMiddleware(jwtService);
@@ -18,7 +19,8 @@ const csrf = csurf({ cookie: true });
 const corpsOptions = { origin: "http://localhost:3000", credentials: true };
 
 // export all custom middlewares
-export { auth, logger, csrf };
+export { logger, csrf };
+export { auth };
 
 //export default api middlewares
 export default {
