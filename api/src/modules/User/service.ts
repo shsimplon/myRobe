@@ -33,7 +33,6 @@ export default class UserService implements IUserService {
     const users = await this.UserRepository.addNew(user);
     console.log("user", user);
 
-    // await this.mailerService.sendMail(user);
     return users;
   }
   async login(user: LoginUser) {
