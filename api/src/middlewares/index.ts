@@ -8,7 +8,6 @@ import csurf from "csurf";
 
 // middlewares
 import AuthMiddleware from "./auth";
-// import { jwtService } from "../libs";
 import cors from "cors";
 import { jwtService } from "../libs";
 
