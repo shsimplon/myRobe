@@ -4,6 +4,7 @@ import {
   Column,
   BaseEntity,
   OneToMany,
+  ManyToMany,
 } from "typeorm";
 import { Dress } from "../Dress/entity";
 import { Reservation } from "../Reservation/entity";
@@ -30,6 +31,19 @@ export class User extends BaseEntity {
   role?: string;
 
   //relation
+  //   @OneToMany(() => Reservation, (reservation) => reservation.user)
+  //   reservations: Reservation[];
+  @ManyToMany(() => Dress, (dress) => dress.user)
+  dress: Dress[];
   @OneToMany(() => Reservation, (reservation) => reservation.user)
-  reservations: Reservation[];
+  reservation: Reservation[];
 }
+
+export type user = {
+  email: string;
+  password: string;
+  name: string;
+  address: string;
+  phone: string;
+  role: string;
+};

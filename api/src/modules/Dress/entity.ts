@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Reservation } from "../Reservation/entity";
 import { Categorie } from "../categorie/entity";
+import { User } from "../User/entity";
 
 @Entity()
 export class Dress extends BaseEntity {
@@ -28,7 +29,7 @@ export class Dress extends BaseEntity {
 
   @ManyToOne(() => Categorie, (categorie) => categorie.dresses)
   categorie: Categorie;
-  @ManyToMany(() => Reservation, (reservation) => reservation.dress)
-  @JoinTable({ name: "dress_reservation" })
-  reservation: Reservation[];
+  @ManyToMany(() => User, (user) => user.dress)
+  @JoinTable({ name: "dress_user" })
+  user: User[];
 }
