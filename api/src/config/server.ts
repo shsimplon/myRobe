@@ -5,6 +5,7 @@ import { Server } from "@overnightjs/core";
 import { handleError } from "../helpers/ApiError";
 import swaggerUi from "swagger-ui-express";
 import swaggerOptions from "../swagger.json";
+import cors from "cors";
 class App extends Server {
   constructor(routes: Array<Object>, middlewares: Object) {
     super();
@@ -16,6 +17,7 @@ class App extends Server {
   }
 
   initializeMiddlewares(middlewares: any) {
+    this.app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
     for (const key in middlewares) {
       if (key === "csrf") {
         this.app.get(

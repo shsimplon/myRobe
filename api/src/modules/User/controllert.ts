@@ -48,9 +48,13 @@ class UserController {
   login = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = await this.userService.login({ ...req.body });
+
       const access_token = await this.jwtService.generateAccessToken(user);
+      console.log(access_token);
 
       const refresh_token = this.jwtService.generateRefreshToken(user.id);
+      console.log("login: ", refresh_token);
+
       const nextMonhteDate = new Date(Date.now() + 30 * 86400 * 1000);
       res.cookie("refresh_token", refresh_token, {
         expires: nextMonhteDate,
