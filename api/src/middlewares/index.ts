@@ -14,7 +14,8 @@ import { jwtService } from "../libs";
 const auth = new AuthMiddleware(jwtService);
 const logger = new Logger(winston);
 const csrf = csurf({ cookie: true });
-const corpsOptions = { credentials: true };
+// const corpsOptions = { credentials: true,
+//  };
 
 // export all custom middlewares
 export { logger, csrf };
@@ -26,6 +27,6 @@ export default {
   json: express.json(),
   cookieParser: cookieParser(),
   apiLogger: morgan("combined", { stream: logger.stream }),
-  cors: cors(corpsOptions),
+  //   cors: cors(corpsOptions),
   csrf,
 };
