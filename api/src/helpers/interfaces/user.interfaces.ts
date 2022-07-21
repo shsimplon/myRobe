@@ -17,7 +17,9 @@ export interface IUserService {
   delete(user: User): Promise<string | undefined>;
 }
 export interface IUserRepository {
+  findById(user: User): Promise<User | undefined>;
   delete(user: User): Promise<any>;
+
   update(user: User): Promise<any>;
   findOne(user: LoginUser): Promise<User | undefined>;
   findAll(): Promise<User[]>;

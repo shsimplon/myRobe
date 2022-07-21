@@ -12,7 +12,7 @@ class JwtService {
   }
 
   async generateAccessToken(user: User) {
-    return await this.jwt.sign({ ...user }, this.secret, { expiresIn: "5m" });
+    return await this.jwt.sign({ ...user }, this.secret, { expiresIn: "2m" });
   }
   async generateRefreshToken(userId: any) {
     return await this.jwt.sign({ id: userId }, this.secret, {

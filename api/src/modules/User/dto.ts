@@ -3,7 +3,7 @@ const ajv = new Ajv();
 //interface user
 export interface UserInterface {
   id: string;
-  name: string;
+  username: string;
   address: string;
   phone: string;
   email: string;
@@ -15,7 +15,7 @@ const schema = {
 
   properties: {
     id: { type: "string" },
-    name: { type: "string" },
+    username: { type: "string" },
     address: { type: "string", nullable: true },
     phone: { type: "string", nullable: true },
     email: { type: "string" },
@@ -35,7 +35,7 @@ console.log("validate.errors", validate.errors);
 export type CreateUser = Omit<UserInterface, "id">;
 export type LoginUser = Pick<
   UserInterface,
-  "id" | "name" | "email" | "password"
+  "id" | "username" | "email" | "password"
 >;
 export type DeleteUser = Pick<UserInterface, "id">;
 export type UpdateUser = Partial<UserInterface>;
@@ -44,7 +44,7 @@ export type UpdateUser = Partial<UserInterface>;
 
 export class UserDTO {
   public id: string;
-  public name: string;
+  public username: string;
   public address?: string;
   public phone?: string;
   public email: string;
@@ -54,7 +54,7 @@ export class UserDTO {
   public access_token?: string;
   constructor({
     id,
-    name,
+    username,
     address,
     phone,
     email,
@@ -67,12 +67,12 @@ export class UserDTO {
     address?: string;
     phone?: string;
     access_token?: string;
-    name: string;
+    username: string;
     role?: string;
     password: string;
   }) {
     this.id = id;
-    this.name = name;
+    this.username = username;
     this.email = email;
     this.access_token = access_token;
     this.address = address;

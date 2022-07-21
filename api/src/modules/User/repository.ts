@@ -24,6 +24,9 @@ class UserRepository implements IUserRepository {
   async findOne(user: LoginUser) {
     return await this.manager.findOne(User, { email: user.email });
   }
+  async findById(user: User) {
+    return await this.manager.findOne(User, { id: user.id });
+  }
   compareHash = async (password: string, hash: string) =>
     await bcrypt.compareSync(password, hash);
 

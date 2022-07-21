@@ -16,10 +16,20 @@ export default class UserService implements IUserService {
 
   async getOne(user: LoginUser): Promise<User | undefined> {
     const userData = await this.UserRepository.findOne(user);
+
     return userData;
   }
-  getById(user: User): Promise<User> {
-    throw new Error("Method not implemented.");
+  //   async getById(user: User): Promise<User> {
+  //     const userData = await this.UserRepository.findOne(user);
+  //     console.log("userData", userData?.id);
+  //     //@ts-ignore
+  //     return userData;
+  //   }
+
+  async getById(user: User) {
+    const userById = await this.UserRepository.findById(user);
+
+    return user;
   }
 
   async getAll() {
@@ -29,7 +39,13 @@ export default class UserService implements IUserService {
 
   async register(user: CreateUser): Promise<CreateUser> {
     if (!user.email || !user.password)
-      throw new ApiError(400, "Missing required email and password fields");
+      throw new ApiError(
+        400,
+        "Les champs email et mot de passe sont obligatoires"
+      );
+    if (user.email == user.email || user.password == user.password)
+      throw new ApiError(400, "Ce compte existe déja");
+
     const users = await this.UserRepository.addNew(user);
     console.log("user", user);
 
@@ -37,19 +53,21 @@ export default class UserService implements IUserService {
   }
   async login(user: LoginUser) {
     if (!user.email || !user.password)
-      throw new ApiError(400, "Missing required email and password fields");
+      throw new ApiError(
+        400,
+        "Les champs email et mot de passe sont obligatoires"
+      );
 
     const userLogin = await this.UserRepository.findByEmail(user);
 
-    if (!userLogin)
-      throw new ApiError(400, "User with the specified email does not exists");
+    if (!userLogin) throw new ApiError(400, "L'utilisateur n'existe pas");
 
     const passwordMatch = await this.UserRepository.compareHash(
       user.password,
       userLogin.password
     );
     if (!passwordMatch)
-      throw new ApiError(400, "Email or password do not match");
+      throw new ApiError(400, "Email ou le mot de passe ne correspondent pas");
 
     return userLogin;
   }

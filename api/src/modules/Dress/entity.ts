@@ -6,6 +6,7 @@ import {
   ManyToOne,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from "typeorm";
 import { Reservation } from "../Reservation/entity";
 import { Categorie } from "../categorie/entity";
@@ -30,6 +31,8 @@ export class Dress extends BaseEntity {
   @ManyToOne(() => Categorie, (categorie) => categorie.dresses)
   categorie: Categorie;
   @ManyToMany(() => User, (user) => user.dress)
-  @JoinTable({ name: "dress_user" })
   user: User[];
+
+  @OneToMany((type) => Reservation, (reservation) => reservation.dress)
+  reservations: Reservation[];
 }

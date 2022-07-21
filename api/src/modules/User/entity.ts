@@ -14,7 +14,7 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   @Column()
-  name!: string;
+  username!: string;
   @Column({
     nullable: true,
   })
@@ -35,14 +35,16 @@ export class User extends BaseEntity {
   //   reservations: Reservation[];
   @ManyToMany(() => Dress, (dress) => dress.user)
   dress: Dress[];
-  @OneToMany(() => Reservation, (reservation) => reservation.user)
-  reservation: Reservation[];
+  //   @OneToMany(() => Reservation, (reservation) => reservation.user)
+  //   reservation: Reservation[];
+  @OneToMany((type) => Reservation, (reservation) => reservation.user)
+  reservations: Reservation[];
 }
 
 export type user = {
   email: string;
   password: string;
-  name: string;
+  username: string;
   address: string;
   phone: string;
   role: string;

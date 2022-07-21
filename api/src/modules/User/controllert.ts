@@ -34,7 +34,7 @@ class UserController {
     }
   };
   @Get()
-  //   @Middleware(auth.isAuth)
+  //@Middleware(auth.isAuth)
   getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
       let users = await this.userService.getAll();
@@ -52,7 +52,7 @@ class UserController {
       const access_token = await this.jwtService.generateAccessToken(user);
       console.log(access_token);
 
-      const refresh_token = this.jwtService.generateRefreshToken(user.id);
+      const refresh_token = await this.jwtService.generateRefreshToken(user.id);
       console.log("login: ", refresh_token);
 
       const nextMonhteDate = new Date(Date.now() + 30 * 86400 * 1000);
@@ -60,7 +60,7 @@ class UserController {
         expires: nextMonhteDate,
         httpOnly: true,
       });
-      res.status(200).json({ ...user, access_token });
+      res.status(200).json({ ...user, access_token, refresh_token });
     } catch (err) {
       next(err);
     }
@@ -76,11 +76,16 @@ class UserController {
 
       //verifier le token
       const decoded = await this.jwtService.decodeToken(refresh_token);
+      console.log("decoded", decoded);
+
       let user = await this.userService.getById(decoded.id);
+      console.log("user hhhhh", user);
+      //@ts-ignore
       const access_token = await this.jwtService.generateAccessToken(user);
       // if the user has permissions
+      console.log("access_token", access_token);
 
-      res.status(200).json(new UserDTO({ ...user, access_token }));
+      res.status(200).json({ user, access_token });
     } catch (e) {
       return res.status(401).json("Authentication failed : \n" + e);
     }
