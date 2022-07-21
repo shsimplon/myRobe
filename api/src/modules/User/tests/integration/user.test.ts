@@ -21,7 +21,7 @@ describe("user/post", () => {
       .send({
         email: "m@GGGG.fr",
         password: "test",
-        name: "test",
+        username: "test",
         address: "test",
         phone: "test",
         role: "test",

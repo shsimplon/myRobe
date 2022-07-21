@@ -6,6 +6,9 @@ import { User } from "../../entity";
 const users: any[] = [];
 
 class UserRepositoryMocks implements IUserRepository {
+  findById(user: User): Promise<User | undefined> {
+    throw new Error("Method not implemented.");
+  }
   delete(user: User): Promise<any> {
     throw new Error("Method not implemented.");
   }

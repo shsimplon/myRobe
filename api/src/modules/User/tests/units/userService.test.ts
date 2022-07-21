@@ -8,7 +8,7 @@ const userService = new UserService(new UserRepositoryMocks());
 const datatest: user = {
   email: "machin@gmail.com",
   password: "test",
-  name: "test",
+  username: "test",
   address: "test",
   phone: "test",
   role: "test",
@@ -32,7 +32,7 @@ describe("user use case", () => {
       await userService.register({
         email: "",
         password: "",
-        name: "",
+        username: "",
         address: "",
         phone: "",
         role: "",
