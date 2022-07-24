@@ -27,8 +27,8 @@ export class User extends BaseEntity {
   email!: string;
   @Column()
   password!: string;
-  @Column({ nullable: true })
-  role?: string;
+  @Column({ nullable: true, default: "user" })
+  role?: "";
 
   //relation
   //   @OneToMany(() => Reservation, (reservation) => reservation.user)

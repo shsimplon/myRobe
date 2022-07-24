@@ -49,17 +49,15 @@ class UserController {
       const user = await this.userService.login({ ...req.body });
 
       const access_token = await this.jwtService.generateAccessToken(user);
-      console.log(access_token);
 
       const refresh_token = await this.jwtService.generateRefreshToken(user.id);
-      console.log("login: ", refresh_token);
 
       const nextMonhteDate = new Date(Date.now() + 30 * 86400 * 1000);
       res.cookie("refresh_token", refresh_token, {
         expires: nextMonhteDate,
         httpOnly: true,
       });
-      res.status(200).json({ ...user, access_token, refresh_token });
+      res.status(200).json({ ...user, access_token });
     } catch (err) {
       next(err);
     }
@@ -75,14 +73,10 @@ class UserController {
 
       //verifier le token
       const decoded = await this.jwtService.decodeToken(refresh_token);
-      console.log("decoded", decoded);
 
       let user = await this.userService.getById(decoded.id);
-      console.log("user hhhhh", user);
-      //@ts-ignore
       const access_token = await this.jwtService.generateAccessToken(user);
       // if the user has permissions
-      console.log("access_token", access_token);
 
       res.status(200).json({ user, access_token });
     } catch (e) {
@@ -104,9 +98,11 @@ class UserController {
 
   @Get("logout")
   logout = async (req: Request, res: Response, next: NextFunction) => {
-    res.clearCookie("refresh_token");
+    const response = res.clearCookie("refresh_token");
+
     res.status(200).end();
   };
+
   @Put()
   update = async (req: Request, res: Response, next: NextFunction) => {
     try {

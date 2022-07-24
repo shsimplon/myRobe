@@ -8,7 +8,7 @@ export interface UserInterface {
   phone: string;
   email: string;
   password: string;
-  role: string;
+  role?: "";
 }
 const schema = {
   type: "object",
@@ -20,7 +20,7 @@ const schema = {
     phone: { type: "string", nullable: true },
     email: { type: "string" },
     password: { type: "string" },
-    role: { type: "string", nullable: true },
+    role: { type: "", nullable: true },
   },
   required: ["email", "password"],
   additionalProperties: false,
@@ -35,7 +35,7 @@ console.log("validate.errors", validate.errors);
 export type CreateUser = Omit<UserInterface, "id">;
 export type LoginUser = Pick<
   UserInterface,
-  "id" | "username" | "email" | "password"
+  "id" | "username" | "email" | "password" | "role"
 >;
 export type DeleteUser = Pick<UserInterface, "id">;
 export type UpdateUser = Partial<UserInterface>;
@@ -49,7 +49,7 @@ export class UserDTO {
   public phone?: string;
   public email: string;
   public password: string;
-  public role?: string;
+  public role?: "";
 
   public access_token?: string;
   constructor({
@@ -68,7 +68,7 @@ export class UserDTO {
     phone?: string;
     access_token?: string;
     username: string;
-    role?: string;
+    role: "";
     password: string;
   }) {
     this.id = id;
