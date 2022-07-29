@@ -1,7 +1,15 @@
-import { Controller, Delete, Get, Post, Put } from "@overnightjs/core";
+import {
+  Controller,
+  Delete,
+  Get,
+  Middleware,
+  Post,
+  Put,
+} from "@overnightjs/core";
 import { NextFunction, Request, Response } from "express";
 import { get } from "http";
 import { IDressService } from "../../helpers/interfaces/dress.interfaces";
+import { auth } from "../../middlewares";
 import { DressDTO } from "./dto";
 import { Dress } from "./entity";
 @Controller("dress")
@@ -40,6 +48,7 @@ class DressController {
     }
   };
   @Put()
+  @Middleware(auth.isAuth)
   update = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const dress = await this.dressService.update({ ...req.body });
@@ -49,6 +58,7 @@ class DressController {
     }
   };
   @Delete(":id")
+  @Middleware(auth.isAuth)
   delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const dress = await this.dressService.delete({ ...req.body });

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import JwtService from "../libs/jwt";
+import jwt from "jsonwebtoken";
 
 class AuthMiddleware {
   private jwt;

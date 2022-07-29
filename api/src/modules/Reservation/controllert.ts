@@ -1,6 +1,15 @@
-import { Controller, Delete, Get, Post, Put } from "@overnightjs/core";
+import {
+  Controller,
+  Delete,
+  Get,
+  Middleware,
+  Post,
+  Put,
+} from "@overnightjs/core";
 import { NextFunction, Request, Response } from "express";
 import { IReservationService } from "../../helpers/interfaces/reservation.interface";
+import middlewares, { auth } from "../../middlewares";
+import AuthMiddleware from "../../middlewares/auth";
 import { ReservationDTO } from "./dto";
 import { Reservation } from "./entity";
 
@@ -23,11 +32,13 @@ class ReservationController {
     }
   };
   @Post()
+  @Middleware(auth.isAuth)
   register = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const reservation = await this.reservationService.register({
         ...req.body,
       });
+
       res.status(201).json(new ReservationDTO(reservation));
     } catch (err) {
       next(err);

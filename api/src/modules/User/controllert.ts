@@ -13,6 +13,7 @@ import { IUserService } from "../../helpers/interfaces/user.interfaces";
 import JwtService from "../../libs/jwt";
 import { auth } from "../../middlewares";
 import { UserDTO } from "./dto";
+import Logger from "../../helpers/logger";
 
 @Controller("user")
 class UserController {
@@ -30,6 +31,16 @@ class UserController {
       res.status(201).json(user);
     } catch (error) {
       next(error);
+    }
+  };
+
+  @Get("logout")
+  logout = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      res.clearCookie("refresh_token");
+      res.status(200).json({ message: "Logged out succesfully." });
+    } catch (err) {
+      next(err);
     }
   };
   @Get()
@@ -70,14 +81,12 @@ class UserController {
       const refresh_token = req.cookies["refresh_token"];
       if (!refresh_token)
         return res.status(498).json("access denied, your session is expired");
-
       //verifier le token
       const decoded = await this.jwtService.decodeToken(refresh_token);
 
       let user = await this.userService.getById(decoded.id);
       const access_token = await this.jwtService.generateAccessToken(user);
       // if the user has permissions
-
       res.status(200).json({ user, access_token });
     } catch (e) {
       return res.status(401).json("Authentication failed : \n" + e);
@@ -94,13 +103,6 @@ class UserController {
     } catch (err) {
       next(err);
     }
-  };
-
-  @Get("logout")
-  logout = async (req: Request, res: Response, next: NextFunction) => {
-    const response = res.clearCookie("refresh_token");
-
-    res.status(200).end();
   };
 
   @Put()
