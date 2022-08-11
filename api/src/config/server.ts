@@ -5,7 +5,7 @@ import { Server } from "@overnightjs/core";
 import { handleError } from "../helpers/ApiError";
 import swaggerUi from "swagger-ui-express";
 import swaggerOptions from "../swagger.json";
-import path from "path";
+import cors from "cors";
 class App extends Server {
   constructor(routes: Array<Object>, middlewares: Object) {
     super();
@@ -14,7 +14,6 @@ class App extends Server {
     super.addControllers(routes);
     this.initializeErrorHandler();
     this.initializeSwagger();
-    this.initializerPath();
   }
 
   initializeMiddlewares(middlewares: any) {
@@ -40,10 +39,6 @@ class App extends Server {
 
   initializeSwagger() {
     this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerOptions));
-  }
-
-  initializerPath() {
-    this.app.use(express.static(path.join(__dirname, "public")));
   }
 
   listen(port: any) {
