@@ -38,6 +38,7 @@ class ReservationController {
       const reservation = await this.reservationService.register({
         ...req.body,
       });
+      console.log("reservation", reservation);
 
       res.status(201).json(new ReservationDTO(reservation));
     } catch (err) {

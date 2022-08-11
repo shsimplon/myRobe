@@ -1,23 +1,26 @@
 export class ReservationDTO {
   public id: string;
-
-  public date_departure!: string;
-  public reurn_date: string;
+  public date_departure: string;
+  public return_date: string;
+  public quantity?: number;
 
   constructor({
     id,
 
     date_departure,
-    reurn_date,
+    return_date,
+    quantity,
   }: {
     id: string;
 
     date_departure: string;
-    reurn_date: string;
+    return_date: string;
+    quantity?: number;
   }) {
     this.id = id;
 
     this.date_departure = date_departure;
-    this.reurn_date = reurn_date;
+    this.return_date = return_date;
+    this.quantity = quantity;
   }
 }

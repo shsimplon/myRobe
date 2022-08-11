@@ -31,12 +31,10 @@ export class User extends BaseEntity {
   role?: "";
 
   //relation
-  //   @OneToMany(() => Reservation, (reservation) => reservation.user)
-  //   reservations: Reservation[];
+
   @ManyToMany(() => Dress, (dress) => dress.user)
   dress: Dress[];
-  //   @OneToMany(() => Reservation, (reservation) => reservation.user)
-  //   reservation: Reservation[];
+
   @OneToMany((type) => Reservation, (reservation) => reservation.user)
   reservations: Reservation[];
 }

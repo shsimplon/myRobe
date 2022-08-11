@@ -19,9 +19,15 @@ export class Reservation extends BaseEntity {
   @Column()
   date_departure!: string;
   @Column()
-  reurn_date: string;
+  return_date: string;
+  @Column()
+  quantity?: number;
+  @Column()
+  userId?: string;
+  @Column({ array: true })
+  dressId?: [];
 
-  //   //relation
+  //relation
   @ManyToOne(() => User, (user) => user.reservations)
   user: User;
   @ManyToOne(() => Dress, (dress) => dress.reservations)
