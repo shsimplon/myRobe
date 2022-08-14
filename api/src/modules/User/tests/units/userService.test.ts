@@ -5,13 +5,13 @@ import { CreateUser } from "../../dto";
 
 const userService = new UserService(new UserRepositoryMocks());
 
-const datatest: user = {
+const datatest: CreateUser = {
   email: "machin@gmail.com",
-  password: "test",
+  password: "yes",
   username: "test",
   address: "test",
   phone: "test",
-  role: "test",
+  role: "",
 };
 
 describe("user use case", () => {
@@ -19,11 +19,7 @@ describe("user use case", () => {
     it("should show a new test", async () => {
       const result = await userService.register(datatest);
       expect(result.email).toBe("machin@gmail.com");
-      //   expect(result.password).toBe("test");
-      //   expect(result.name).toBe("test");
-      //   expect(result.address).toBe("test");
-      //   expect(result.phone).toBe("test");
-      //   expect(result.role).toBe("test");
+      expect(result.password).toBe("yes");
     });
   });
 
@@ -39,7 +35,9 @@ describe("user use case", () => {
       });
     } catch (e: any) {
       expect(e.statusCode).toBe(400);
-      expect(e.message).toBe("Missing required email and password fields");
+      expect(e.message).toBe(
+        "Les champs email et mot de passe sont obligatoires"
+      );
     }
   });
 

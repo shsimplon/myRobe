@@ -29,6 +29,8 @@ class UserRepositoryMocks implements IUserRepository {
   async addNew(userEntity: CreateUser): Promise<CreateUser> {
     let userCreated = new User();
     userCreated.email = userEntity.email;
+    userCreated.password = userEntity.password;
+
     users.push(userCreated);
     return users[users.length - 1];
   }

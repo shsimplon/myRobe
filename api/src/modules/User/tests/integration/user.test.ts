@@ -19,14 +19,14 @@ describe("user/post", () => {
     const res = await request(server.app)
       .post("/user")
       .send({
-        email: "m@GGGG.fr",
+        email: "m@GG.fr",
         password: "test",
         username: "test",
         address: "test",
         phone: "test",
-        role: "test",
+        role: "",
       })
       .expect(201);
-    expect(res.body.email).toBe("m@GGGG.fr");
+    expect(res.body.email).toBe("m@GG.fr");
   });
 });
