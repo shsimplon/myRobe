@@ -24,8 +24,8 @@ export class Reservation extends BaseEntity {
   quantity?: number;
   @Column()
   userId?: string;
-  @Column({ array: true })
-  dressId?: [];
+  @Column()
+  dressId?: string;
 
   //relation
   @ManyToOne(() => User, (user) => user.reservations)

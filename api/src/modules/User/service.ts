@@ -38,18 +38,19 @@ export default class UserService implements IUserService {
   }
 
   async register(user: CreateUser): Promise<CreateUser> {
-    if (!user.email || !user.password || !user.username)
+    if (!user.email || !user.password || !user.username) {
       throw new ApiError(
         400,
-        "Les champs email et mot de passe sont obligatoires"
+        "Les champs email , mot de passe ou prénom sont obligatoires"
       );
+    } else {
+      const userLogin = await this.UserRepository.findByEmail(user as any);
+      if (userLogin?.email) throw new ApiError(400, "Ce compte existe déja");
 
-    const userLogin = await this.UserRepository.findByEmail(user as any);
-    if (userLogin?.email) throw new ApiError(400, "Ce compte existe déja");
+      const users = await this.UserRepository.addNew(user);
 
-    const users = await this.UserRepository.addNew(user);
-
-    return users;
+      return users;
+    }
   }
 
   async login(user: LoginUser) {
