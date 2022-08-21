@@ -15,7 +15,7 @@ const options: ConnectionOptions = {
   username: config.db_user,
   password: config.db_password,
   database: config.db_name,
-  logging: true,
+  //   logging: true,
   synchronize: true,
   migrationsRun: false,
   entities: [__dirname + "/../modules/**/entity.{js,ts}"],
