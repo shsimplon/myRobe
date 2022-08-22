@@ -58,7 +58,7 @@ class DressController {
     }
   };
   @Delete(":id")
-  @Middleware(auth.isAuth)
+  //   @Middleware(auth.isAuth)
   delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const dress = await this.dressService.delete({ ...req.body });
