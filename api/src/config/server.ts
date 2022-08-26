@@ -17,9 +17,6 @@ class App extends Server {
   }
 
   initializeMiddlewares(middlewares: any) {
-    // this.app.use(
-    //   cors({ credentials: true, origin: "http://51.75.121.173:3000" })
-    // );
     for (const key in middlewares) {
       if (key === "csrf") {
         this.app.get(
