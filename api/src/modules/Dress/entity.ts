@@ -19,7 +19,7 @@ export class Dress extends BaseEntity {
 
   @Column()
   name!: string;
-  @Column()
+  @Column("longtext")
   description!: string;
   @Column()
   size!: string;
