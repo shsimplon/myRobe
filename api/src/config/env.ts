@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const config = {
-  app_port: process.env.APP_PORT || "8081",
+  app_port: process.env.APP_PORT || "8080",
   db_port: Number(process.env.TYPEORM_PORT) || 3306,
   db_name: process.env.TYPEORM_DATABASE || "myrobe",
   db_user: process.env.TYPEORM_USERNAME || "root",
